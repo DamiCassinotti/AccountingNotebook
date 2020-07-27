@@ -1,6 +1,8 @@
 package com.agileengine.accounting_notebook.service
 
+import com.agileengine.accounting_notebook.enums.TransactionType
 import com.agileengine.accounting_notebook.model.Account
+import com.agileengine.accounting_notebook.model.IncomingTransaction
 import com.agileengine.accounting_notebook.model.Transaction
 import org.springframework.stereotype.Component
 import java.math.BigDecimal
@@ -15,6 +17,14 @@ class AccountService(private val account: Account = Account()) {
 
     fun getAccountTransactions(): ArrayList<Transaction> {
         return account.transactions
+    }
+
+    fun addNewTransaction(transaction: IncomingTransaction): Transaction {
+        return if (transaction.type == TransactionType.CREDIT) {
+            account.credit(transaction.amount)
+        } else {
+            account.debit(transaction.amount)
+        }
     }
 
 }

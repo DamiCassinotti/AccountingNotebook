@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 data class Transaction(
-        private val id: String = UUID.randomUUID().toString(),
-        private val type: TransactionType,
-        private val amount: BigDecimal,
-        private val effectiveDate: LocalDateTime = LocalDateTime.now())
+        val id: String = UUID.randomUUID().toString(),
+        val type: TransactionType,
+        val amount: BigDecimal,
+        val effectiveDate: LocalDateTime = LocalDateTime.now())

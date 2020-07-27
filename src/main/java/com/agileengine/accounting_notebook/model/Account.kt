@@ -14,18 +14,19 @@ class Account {
     var transactions: ArrayList<Transaction> = ArrayList()
         private set
 
-    fun credit(creditAmount: BigDecimal) {
+    fun credit(creditAmount: BigDecimal): Transaction {
         accountValue = accountValue.add(creditAmount)
         val transaction = Transaction(type = TransactionType.CREDIT, amount = creditAmount)
         transactions.add(transaction)
-
+        return transaction
     }
 
-    fun debit(debitAmount: BigDecimal) {
+    fun debit(debitAmount: BigDecimal): Transaction {
         if (accountValue.subtract(debitAmount).isNegative())
             throw AccountCantBeNegativeException("Insufficient funds. You can't debit $debitAmount from total.")
         accountValue = accountValue.subtract(debitAmount)
         val transaction = Transaction(type = TransactionType.DEBIT, amount = debitAmount)
         transactions.add(transaction)
+        return transaction
     }
 }
