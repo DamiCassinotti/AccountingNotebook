@@ -1,4 +1,4 @@
-package com.agileengine.accounting_notebook;
+package com.agileengine.accounting_notebook.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
