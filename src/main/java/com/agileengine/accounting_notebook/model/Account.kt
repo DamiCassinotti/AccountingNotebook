@@ -15,7 +15,7 @@ class Account {
     var transactions: ArrayList<Transaction> = ArrayList()
         private set
 
-    val rwLock = ReentrantReadWriteLock(true)
+    private val rwLock = ReentrantReadWriteLock(true)
 
     fun credit(creditAmount: BigDecimal): Transaction {
         rwLock.writeLock().lock()

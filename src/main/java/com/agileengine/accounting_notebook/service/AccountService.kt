@@ -30,9 +30,9 @@ class AccountService(private val account: Account = Account()) {
 
     fun getTransactionById(uuid: UUID): Transaction {
         val optTransaction = account.transactions.stream().filter { it.id == uuid }.findAny()
-        if (optTransaction.isEmpty)
+        if (!optTransaction.isPresent)
             throw TransactionNotFoundException("transaction not found")
-        return account.transactions[0]
+        return optTransaction.get()
     }
 
 }
