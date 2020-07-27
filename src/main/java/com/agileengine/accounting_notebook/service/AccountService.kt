@@ -1,7 +1,6 @@
 package com.agileengine.accounting_notebook.service
 
 import com.agileengine.accounting_notebook.enums.TransactionType
-import com.agileengine.accounting_notebook.exception.InvalidIdException
 import com.agileengine.accounting_notebook.exception.TransactionNotFoundException
 import com.agileengine.accounting_notebook.model.Account
 import com.agileengine.accounting_notebook.model.IncomingTransaction
@@ -29,12 +28,7 @@ class AccountService(private val account: Account = Account()) {
         }
     }
 
-    fun getTransactionById(id: String): Transaction {
-        val uuid = try {
-            UUID.fromString(id)
-        } catch (e: IllegalArgumentException) {
-            throw InvalidIdException("invalid ID supplied")
-        }
+    fun getTransactionById(uuid: UUID): Transaction {
         val optTransaction = account.transactions.stream().filter { it.id == uuid }.findAny()
         if (optTransaction.isEmpty)
             throw TransactionNotFoundException("transaction not found")
