@@ -6,9 +6,13 @@ import com.agileengine.accounting_notebook.extensions.isNegative
 import java.math.BigDecimal
 import java.util.*
 
-class Account(
-        private var accountValue: BigDecimal = BigDecimal.ZERO,
-        private var transactions: ArrayList<Any?> = ArrayList()) {
+class Account {
+
+    var accountValue: BigDecimal = BigDecimal.ZERO
+        private set
+
+    var transactions: ArrayList<Transaction> = ArrayList()
+        private set
 
     fun credit(creditAmount: BigDecimal) {
         accountValue = accountValue.add(creditAmount)
